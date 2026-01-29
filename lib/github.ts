@@ -1,4 +1,4 @@
-import { Repository } from '@/types';
+import { Repository } from '@/types/index';
 
 // 15 Mock Repositories - Hidden Gems with diverse quality signals
 export const MOCK_REPOSITORIES: Repository[] = [
@@ -19,6 +19,8 @@ export const MOCK_REPOSITORIES: Repository[] = [
         pushed_at: '2024-01-20T15:30:00Z',
         watchers_count: 1250,
         license: { name: 'MIT License' },
+        has_pages: true,
+        has_issues: true
     },
     {
         id: 2,
@@ -31,12 +33,14 @@ export const MOCK_REPOSITORIES: Repository[] = [
         forks_count: 156,
         open_issues_count: 5,
         language: 'Rust',
-        topics: ['fuzzy-search', 'rust', 'performance', 'wasm'],
+        topics: ['fuzzy-search', 'rust', 'performance', 'wasm', 'test'],
         created_at: '2023-03-20T08:15:00Z',
         updated_at: '2024-01-18T12:00:00Z',
         pushed_at: '2024-01-18T12:00:00Z',
         watchers_count: 2340,
         license: { name: 'Apache License 2.0' },
+        has_pages: false,
+        has_issues: true
     },
     {
         id: 3,
@@ -49,12 +53,14 @@ export const MOCK_REPOSITORIES: Repository[] = [
         forks_count: 234,
         open_issues_count: 2,
         language: 'Go',
-        topics: ['clean-architecture', 'golang', 'ddd', 'cqrs', 'hexagonal'],
+        topics: ['clean-architecture', 'golang', 'ddd', 'cqrs', 'hexagonal', 'testing'],
         created_at: '2023-01-10T14:30:00Z',
         updated_at: '2024-01-19T09:45:00Z',
         pushed_at: '2024-01-19T09:45:00Z',
         watchers_count: 890,
         license: { name: 'MIT License' },
+        has_pages: true,
+        has_issues: true
     },
     {
         id: 4,
@@ -73,6 +79,8 @@ export const MOCK_REPOSITORIES: Repository[] = [
         pushed_at: '2024-01-21T08:00:00Z',
         watchers_count: 3100,
         license: { name: 'MIT License' },
+        has_pages: true,
+        has_issues: true
     },
     {
         id: 5,
@@ -85,12 +93,14 @@ export const MOCK_REPOSITORIES: Repository[] = [
         forks_count: 123,
         open_issues_count: 4,
         language: 'TypeScript',
-        topics: ['sql', 'database', 'typescript', 'type-safe', 'query-builder'],
+        topics: ['sql', 'database', 'typescript', 'type-safe', 'query-builder', 'test'],
         created_at: '2023-04-12T11:00:00Z',
         updated_at: '2024-01-17T16:30:00Z',
         pushed_at: '2024-01-17T16:30:00Z',
         watchers_count: 1780,
         license: { name: 'MIT License' },
+        has_pages: false,
+        has_issues: true
     },
     {
         id: 6,
@@ -109,6 +119,8 @@ export const MOCK_REPOSITORIES: Repository[] = [
         pushed_at: '2024-01-22T10:15:00Z',
         watchers_count: 4200,
         license: { name: 'MIT License' },
+        has_pages: true,
+        has_issues: true
     },
     {
         id: 7,
@@ -127,6 +139,8 @@ export const MOCK_REPOSITORIES: Repository[] = [
         pushed_at: '2024-01-20T11:00:00Z',
         watchers_count: 567,
         license: { name: 'MIT License' },
+        has_pages: false,
+        has_issues: true
     },
     {
         id: 8,
@@ -145,6 +159,8 @@ export const MOCK_REPOSITORIES: Repository[] = [
         pushed_at: '2024-01-15T14:20:00Z',
         watchers_count: 2890,
         license: { name: 'MIT License' },
+        has_pages: true,
+        has_issues: true
     },
     {
         id: 9,
@@ -163,6 +179,8 @@ export const MOCK_REPOSITORIES: Repository[] = [
         pushed_at: '2024-01-21T17:00:00Z',
         watchers_count: 1450,
         license: { name: 'Apache License 2.0' },
+        has_pages: false,
+        has_issues: true
     },
     {
         id: 10,
@@ -181,6 +199,8 @@ export const MOCK_REPOSITORIES: Repository[] = [
         pushed_at: '2024-01-18T10:30:00Z',
         watchers_count: 890,
         license: { name: 'MIT License' },
+        has_pages: true,
+        has_issues: true
     },
     {
         id: 11,
@@ -199,6 +219,8 @@ export const MOCK_REPOSITORIES: Repository[] = [
         pushed_at: '2024-01-19T15:45:00Z',
         watchers_count: 3450,
         license: { name: 'MIT License' },
+        has_pages: true,
+        has_issues: true
     },
     {
         id: 12,
@@ -217,6 +239,8 @@ export const MOCK_REPOSITORIES: Repository[] = [
         pushed_at: '2024-01-16T11:20:00Z',
         watchers_count: 780,
         license: { name: 'MIT License' },
+        has_pages: true,
+        has_issues: true
     },
     {
         id: 13,
@@ -235,6 +259,8 @@ export const MOCK_REPOSITORIES: Repository[] = [
         pushed_at: '2024-01-20T09:00:00Z',
         watchers_count: 2100,
         license: { name: 'MIT License' },
+        has_pages: false,
+        has_issues: true
     },
     {
         id: 14,
@@ -253,6 +279,8 @@ export const MOCK_REPOSITORIES: Repository[] = [
         pushed_at: '2024-01-17T13:30:00Z',
         watchers_count: 1670,
         license: { name: 'Apache License 2.0' },
+        has_pages: true,
+        has_issues: true
     },
     {
         id: 15,
@@ -271,26 +299,32 @@ export const MOCK_REPOSITORIES: Repository[] = [
         pushed_at: '2024-01-22T08:00:00Z',
         watchers_count: 4800,
         license: { name: 'MIT License' },
+        has_pages: true,
+        has_issues: true
     },
 ];
 
 /**
- * Fetch repositories from GitHub API with fallback to mock data
+ * Fetch repositories from GitHub API using Safe Mode logic
+ * Returns real data if available, otherwise mock data without crashing
  */
-export async function searchRepositories(query: string): Promise<{
-    repositories: Repository[];
-    isRealTimeData: boolean;
+export async function fetchRepositories(query: string): Promise<{
+    repos: Repository[];
+    isLive: boolean;
 }> {
     const token = process.env.GITHUB_TOKEN;
 
+    // 1. Check for token - if missing, immediate fallback
+    if (!token) {
+        console.log('⚠️ [SafeMode] No GITHUB_TOKEN found. Using mock data.');
+        return {
+            repos: filterMockRepos(query),
+            isLive: false,
+        };
+    }
+
     try {
-        if (!token) {
-            console.log('No GITHUB_TOKEN found, using mock data');
-            return {
-                repositories: filterMockRepos(query),
-                isRealTimeData: false,
-            };
-        }
+        console.log(`🔌 [SafeMode] Attempting GitHub API fetch for: "${query}"`);
 
         const response = await fetch(
             `https://api.github.com/search/repositories?q=${encodeURIComponent(query)}&sort=stars&order=desc&per_page=30`,
@@ -304,20 +338,34 @@ export async function searchRepositories(query: string): Promise<{
             }
         );
 
+        // 2. Handle API Errors (Rate limit, Auth fail, Server error)
         if (!response.ok) {
-            throw new Error(`GitHub API error: ${response.status}`);
+            console.warn(`🛑 [SafeMode] GitHub API Error: ${response.status} ${response.statusText}`);
+            console.warn('Falling back to mock data...');
+
+            // Return mock data instead of throwing
+            return {
+                repos: filterMockRepos(query),
+                isLive: false,
+            };
         }
 
         const data = await response.json();
+
+        // 3. Success - Return real data
+        console.log(`✅ [SafeMode] Successfully fetched ${data.items?.length || 0} repositories.`);
+
         return {
-            repositories: data.items as Repository[],
-            isRealTimeData: true,
+            repos: (data.items as Repository[]) || [],
+            isLive: true,
         };
+
     } catch (error) {
-        console.error('GitHub API failed, falling back to mock data:', error);
+        // 4. Catch Network Errors / Timeouts
+        console.error('🔥 [SafeMode] Critical failure during fetch:', error);
         return {
-            repositories: filterMockRepos(query),
-            isRealTimeData: false,
+            repos: filterMockRepos(query),
+            isLive: false,
         };
     }
 }
@@ -326,14 +374,16 @@ export async function searchRepositories(query: string): Promise<{
  * Filter mock repositories based on query
  */
 function filterMockRepos(query: string): Repository[] {
+    if (!query) return MOCK_REPOSITORIES;
+
     const lowerQuery = query.toLowerCase();
 
     // Filter by name, description, language, or topics
     const filtered = MOCK_REPOSITORIES.filter(repo => {
         return (
             repo.name.toLowerCase().includes(lowerQuery) ||
-            repo.description?.toLowerCase().includes(lowerQuery) ||
-            repo.language?.toLowerCase().includes(lowerQuery) ||
+            (repo.description && repo.description.toLowerCase().includes(lowerQuery)) ||
+            (repo.language && repo.language.toLowerCase().includes(lowerQuery)) ||
             repo.topics.some(t => t.toLowerCase().includes(lowerQuery))
         );
     });

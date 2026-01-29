@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { Repository } from '@/types';
+import { Repository } from '@/types/index';
 
 // Fallback insights when API is unavailable
 const FALLBACK_INSIGHTS = [

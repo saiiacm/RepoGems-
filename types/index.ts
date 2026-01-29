@@ -21,15 +21,19 @@ export interface Repository {
     license: {
         name: string;
     } | null;
+    has_pages?: boolean;
+    has_issues?: boolean;
 }
 
-// Scored repository with CPFair metrics
+// Scored repository with RepoGems Quality Score (5-Signal Model)
 export interface ScoredRepository {
     repo: Repository;
-    cpfairScore: number;
-    maintenanceHealth: number;
-    communityVelocity: number;
-    inversePopularity: number;
+    qualityScore: number;
+    maintenanceScore: number;
+    docsScore: number;
+    growthScore: number;
+    securityScore: number;
+    communityScore: number;
     isHiddenGem: boolean;
     aiInsight?: string;
 }

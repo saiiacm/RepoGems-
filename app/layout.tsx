@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/ui/Header';
-import Footer from '@/components/ui/Footer';
+import { Footer } from '@/components/ui/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
     title: 'RepoGems - Discover Hidden Gem Repositories',
-    description: 'Find underrated GitHub repositories that deserve more attention using our fairness-aware CPFair algorithm.',
+    description: 'Find underrated GitHub repositories that deserve more attention using our fairness-aware RepoGems Quality Score.',
     keywords: ['GitHub', 'repositories', 'hidden gems', 'open source', 'discovery'],
 };
 

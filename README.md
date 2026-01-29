@@ -1,6 +1,6 @@
 # RepoGems 💎
 
-Discover GitHub's hidden gems using fairness-aware recommendations.
+A developer-first tool to analyze GitHub repository health and quality.
 
 ## 🚀 Quick Start
 
@@ -19,27 +19,49 @@ npm run dev
 
 Visit [http://localhost:3000](http://localhost:3000)
 
+## 📊 RepoGems Quality Score
+
+We surface high-quality repositories using a precision mathematical model that evaluates 5 distinct health signals. We don't just count stars; we analyze the heartbeat of the project.
+
+**The 100-Point Scoring Model:**
+
+| Signal | Weight | Logic |
+|--------|--------|-------|
+| **Community Health** | **30%** | Harmonic Decay: Higher score for fewer open issues relative to total interactions. |
+| **Maintenance Velocity** | **25%** | Linear Decay: Rewards recent commits and active code updates. |
+| **Growth Trend** | **20%** | Logarithmic Growth: Measures fork velocity and star trajectory. |
+| **Security** | **15%** | Boolean Check: Verifies valid open-source licenses. |
+| **Documentation** | **10%** | Quality Check: Ensures homepage and comprehensive description exist. |
+
 ## ✨ Features
 
-- **CPFair Algorithm**: Score = (Maintenance × 0.4) + (Velocity × 0.3) + (Uniqueness × 0.3)
-- **Hidden Gem Detection**: Repos with <5k stars + high activity get 15% score boost
-- **AI Insights**: Gemini-powered explanations for why repos are special
-- **Fault Tolerant**: Falls back to curated mock data if APIs fail
+- **RepoGems Quality Score**: A transparent, fair scoring engine for open-source discovery.
+- **Hidden Gem Detection**: Automatically highlights underrated repositories with high quality scores but lower star counts.
+- **AI Insights**: Powered by **Gemini 3 Pro** to generate human-readable summaries and explanations.
+- **Fault Tolerant**: Safely falls back to curated mock data if API limits are reached.
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS & Vanilla CSS
+- **UI Components**: Shadcn UI & Lucide Icons
+- **AI**: Google Gemini API
 
 ## 📁 Project Structure
 
 ```
 ├── app/                  # Next.js 14 App Router
+│   ├── demo/             # Demo page
 │   ├── page.tsx          # Home page
 │   ├── search/page.tsx   # Search results
 │   └── layout.tsx        # Root layout
 ├── components/           # React components
-│   ├── RepoCard.tsx      # Repository card with fairness badge
-│   ├── SearchBar.tsx     # Search input
-│   └── ui/               # Header, Footer
+│   ├── ui/               # Reusable UI components (Header, Footer, SearchBar)
+│   └── RepoCard.tsx      # Repository card with score visualization
 ├── lib/                  # Core logic
 │   ├── github.ts         # GitHub API + mock fallback
-│   ├── cpfair.ts         # CPFair algorithm
+│   ├── scoring.ts        # RepoGems Quality Score algorithm
 │   └── gemini.ts         # AI insights
 └── types/                # TypeScript definitions
 ```

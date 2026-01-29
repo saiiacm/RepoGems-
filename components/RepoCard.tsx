@@ -2,7 +2,7 @@
 
 import { ExternalLink, Gem, GitFork, Star, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
-import { ScoredRepository } from '@/types';
+import { ScoredRepository } from '@/types/index';
 
 interface RepoCardProps {
     scoredRepo: ScoredRepository;
@@ -10,7 +10,7 @@ interface RepoCardProps {
 }
 
 export default function RepoCard({ scoredRepo, rank }: RepoCardProps) {
-    const { repo, cpfairScore, maintenanceHealth, communityVelocity, inversePopularity, isHiddenGem, aiInsight } = scoredRepo;
+    const { repo, qualityScore, maintenanceScore, docsScore, growthScore, securityScore, communityScore, isHiddenGem, aiInsight } = scoredRepo;
     const [showDetails, setShowDetails] = useState(false);
 
     return (
@@ -95,23 +95,23 @@ export default function RepoCard({ scoredRepo, rank }: RepoCardProps) {
                     </div>
                 )}
 
-                {/* CPFair Score Bar */}
+                {/* Quality Score Bar */}
                 <div className="mb-4">
                     <div className="flex items-center justify-between mb-2">
                         <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
-                            CPFair Score
+                            Quality Score
                         </span>
-                        <span className={`text-sm font-bold ${cpfairScore >= 70 ? 'text-green-400' : cpfairScore >= 50 ? 'text-yellow-400' : 'text-gray-400'}`}>
-                            {cpfairScore}/100
+                        <span className={`text-sm font-bold ${qualityScore >= 70 ? 'text-green-400' : qualityScore >= 50 ? 'text-yellow-400' : 'text-gray-400'}`}>
+                            {qualityScore}/100
                         </span>
                     </div>
                     <div className="h-2 bg-white/10 rounded-full overflow-hidden">
                         <div
-                            className={`h-full rounded-full transition-all duration-500 ${cpfairScore >= 70 ? 'bg-gradient-to-r from-green-500 to-emerald-400' :
-                                cpfairScore >= 50 ? 'bg-gradient-to-r from-yellow-500 to-orange-400' :
+                            className={`h-full rounded-full transition-all duration-500 ${qualityScore >= 70 ? 'bg-gradient-to-r from-green-500 to-emerald-400' :
+                                qualityScore >= 50 ? 'bg-gradient-to-r from-yellow-500 to-orange-400' :
                                     'bg-gradient-to-r from-gray-500 to-gray-400'
                                 }`}
-                            style={{ width: `${cpfairScore}%` }}
+                            style={{ width: `${qualityScore}%` }}
                         />
                     </div>
                 </div>
@@ -137,20 +137,28 @@ export default function RepoCard({ scoredRepo, rank }: RepoCardProps) {
                     <span>{showDetails ? 'Hide' : 'Show'} Score Breakdown</span>
                 </button>
 
-                {/* Score Breakdown */}
+                {/* Score Breakdown - 5 Signals */}
                 {showDetails && (
-                    <div className="mt-4 pt-4 border-t border-white/10 grid grid-cols-3 gap-4">
+                    <div className="mt-4 pt-4 border-t border-white/10 grid grid-cols-5 gap-2">
                         <div className="text-center">
-                            <div className="text-xs text-gray-500 mb-1">Maintenance</div>
-                            <div className="text-sm font-bold text-green-400">{maintenanceHealth}</div>
+                            <div className="text-[10px] text-gray-500 mb-1">Community</div>
+                            <div className="text-xs font-bold text-pink-400">{communityScore}/30</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-xs text-gray-500 mb-1">Velocity</div>
-                            <div className="text-sm font-bold text-blue-400">{communityVelocity}</div>
+                            <div className="text-[10px] text-gray-500 mb-1">Maint.</div>
+                            <div className="text-xs font-bold text-green-400">{maintenanceScore}/25</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-xs text-gray-500 mb-1">Uniqueness</div>
-                            <div className="text-sm font-bold text-purple-400">{inversePopularity}</div>
+                            <div className="text-[10px] text-gray-500 mb-1">Growth</div>
+                            <div className="text-xs font-bold text-yellow-400">{growthScore}/20</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-[10px] text-gray-500 mb-1">Security</div>
+                            <div className="text-xs font-bold text-orange-400">{securityScore}/15</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-[10px] text-gray-500 mb-1">Docs</div>
+                            <div className="text-xs font-bold text-blue-400">{docsScore}/10</div>
                         </div>
                     </div>
                 )}

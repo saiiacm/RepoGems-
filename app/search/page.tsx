@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
-import { searchRepositories } from '@/lib/github';
-import { applyCPFair, getFairnessMetrics } from '@/lib/cpfair';
+import { fetchRepositories } from '@/lib/github';
+import { applyScoring, getScoringMetrics } from '@/lib/scoring';
 import { generateRepoInsight } from '@/lib/gemini';
-import SearchBar from '@/components/SearchBar';
+import SearchBar from '@/components/ui/SearchBar';
 import RepoCard from '@/components/RepoCard';
 import { Activity, BarChart3, Gem, Loader2 } from 'lucide-react';
 
@@ -12,10 +12,10 @@ interface SearchPageProps {
 
 async function SearchResults({ query }: { query: string }) {
     // Fetch repositories
-    const { repositories, isRealTimeData } = await searchRepositories(query);
+    const { repos: repositories, isLive: isRealTimeData } = await fetchRepositories(query);
 
-    // Apply CPFair algorithm
-    const scoredRepos = applyCPFair(repositories);
+    // Apply RepoGems Quality Score
+    const scoredRepos = applyScoring(repositories);
 
     // Generate AI insights for top 6 hidden gems
     const topHiddenGems = scoredRepos.filter(r => r.isHiddenGem).slice(0, 6);
@@ -33,8 +33,8 @@ async function SearchResults({ query }: { query: string }) {
         aiInsight: insightMap.get(scored.repo.id),
     }));
 
-    // Calculate fairness metrics
-    const metrics = getFairnessMetrics(scoredRepos);
+    // Calculate quality metrics
+    const metrics = getScoringMetrics(scoredRepos);
 
     return (
         <div>
